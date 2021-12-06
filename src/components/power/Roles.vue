@@ -25,11 +25,9 @@
             >
               <!-- 渲染一级权限 -->
               <el-col :span="5">
-                <el-tag
-                  closable
-                  @close="removeRightById(scope.row, item1.id)"
-                  >{{ item1.authName }}</el-tag
-                >
+                <el-tag closable @close="removeRightById(scope.row, item1.id)">{{
+                  item1.authName
+                }}</el-tag>
                 <i class="el-icon-caret-right"></i>
               </el-col>
               <!-- 渲染二级和三级权限 -->
@@ -45,7 +43,8 @@
                       type="success"
                       closable
                       @close="removeRightById(scope.row, item2.id)"
-                      >{{ item2.authName }}</el-tag
+                    >
+                      {{ item2.authName }}</el-tag
                     >
                     <i class="el-icon-caret-right"></i>
                   </el-col>
@@ -71,12 +70,8 @@
         <el-table-column label="角色描述" prop="roleDesc"></el-table-column>
         <el-table-column label="操作" width="300px">
           <template v-slot="scope">
-            <el-button size="mini" type="primary" icon="el-icon-edit"
-              >编辑</el-button
-            >
-            <el-button size="mini" type="danger" icon="el-icon-delete"
-              >删除</el-button
-            >
+            <el-button size="mini" type="primary" icon="el-icon-edit">编辑</el-button>
+            <el-button size="mini" type="danger" icon="el-icon-delete">删除</el-button>
             <el-button
               size="mini"
               type="warning"
@@ -161,9 +156,7 @@ export default {
       if (confirmResult !== 'confirm') {
         return this.$message.info('取消了删除')
       }
-      const { data: res } = await this.$http.delete(
-        `roles/${role.id}/rights/${rightId}`
-      )
+      const { data: res } = await this.$http.delete(`roles/${role.id}/rights/${rightId}`)
       if (res.meta.status !== 200) {
         this.$message.error(res.meta.msg)
       }
@@ -205,10 +198,9 @@ export default {
       ]
 
       const idStr = keys.join(',')
-      const { data: res } = await this.$http.post(
-        `roles/${this.roleId}/rights`,
-        { rids: idStr }
-      )
+      const { data: res } = await this.$http.post(`roles/${this.roleId}/rights`, {
+        rids: idStr
+      })
       if (res.meta.status !== 200) {
         this.$message.error(res.meta.msg)
       }
